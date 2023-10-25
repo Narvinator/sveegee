@@ -1,5 +1,29 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const { Triangle, Square, Circle } = require("./lib/shapes")
+
+function writeToFile(filename, answers){
+    let svgString = "";
+
+    svgString =
+    '<svg version="1.1" width="275" height="200" xmins="http://www.w3.org/2000/svg">';
+
+    svgString += "<g>";
+
+    svgString += `${answers.shape}` ;
+} 
+
+let shapeOption;
+    if (answers.shape === "Triangle") {
+        shapeOption = new Triangle();
+        svgString += `<polygon points="150, 18 244, 182 56, 182" fill="${answers.shapeBackgroundColor}"/>`; 
+    } else if (answers.shape === "Square") {
+        shapeOption = new Square();
+        svgString += `<rest x="70" y="40" width="150" fill="${answers.shapeBackgroundColor}"/>`;
+    } else {
+        shapeOption = new Circle();
+        svgString += `<circle cx="150" cy="110" r="90" fill="${answers.shapeBackgroundColor}"/>`;
+    }
 
 function questions() {
     inquirer
